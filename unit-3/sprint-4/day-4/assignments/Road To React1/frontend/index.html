@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <div id="register-form">
+            <h1>Register</h1>
+            <form>
+                <input type="text" id="name" placeholder="Name"><br>
+                <input type="text" id="email" placeholder="Email"><br>
+                <input type="text" id="password" placeholder="Password"><br>
+                <input type="text" id="username" placeholder="Username"><br>
+                <input type="text" id="mobile" placeholder="Mobile"><br>
+                <input type="text" id="description" placeholder="Description"><br>
+            </form>
+            <button onclick="Register()">SignUp</button>
+        </div>
+        <div id="login-form">
+            <h1>Login</h1>
+            <form>
+                <input type="text" id="login-username" placeholder="Username"><br>
+                <input type="text" id="login-password" placeholder="Password"><br>
+            </form>
+            <button onclick="Login()">Login</button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    async function Register(){
+        let signup_data={
+            name:document.getElementById("name").value,
+            email:document.getElementById("email").value,
+            password:document.getElementById("password").value,
+            username:document.getElementById("username").value,
+            mobile:document.getElementById("mobile").value,
+            description:document.getElementById("description").value,
+        }
+        signup_data=JSON.stringify(signup_data)
+        let signup_api_link=`https://masai-api-mocker.herokuapp.com/auth/register`
+          let response=await fetch(signup_api_link,{
+                method:'POST',
+
+                body:signup_data,
+
+                headers:{
+                    'Content-Type':'application/json'
+                }
+
+    
+          }) 
+          let data=await response.json()
+          console.log('data',data)
+       
+    }
+    async function Login(e){
+        // e.preventDefault();
+        let login_data={
+            username:document.getElementById("login-username").value,
+            password:document.getElementById("login-password").value,
+          
+        }
+        login_data1=JSON.stringify(login_data)
+        //let login_api_link="https://masai-api-mocker.herokuapp.com/auth/login"
+        let response=await fetch("https://masai-api-mocker.herokuapp.com/auth/login",{
+            // custom setting object we need to pass in fetch 2nd parameter as like object 
+                method:'POST',
+
+                body:login_data1,
+
+                headers:{
+                    'Content-Type':'application/json'
+                }
+
+    
+          }) 
+          let data=await response.json()
+          LoggedInUser(data,login_data)
+          console.log('Login_data',data)
+       
+    }
+    //////////////////LoggedInUser/////////
+    async function LoggedInUser({token},{username}){
+        let logged_in_api_link= `https://masai-api-mocker.herokuapp.com/user/${username}`
+          let response=await fetch(logged_in_api_link,{
+            // custom setting object we need to pass in fetch 2nd parameter as like object 
+                headers:{
+                    Authorization: `Bearer ${token}`,
+                }
+    
+          }) 
+          let data=await response.json()
+          console.log('LoggedInData',data)
+       
+    }
+
+</script>

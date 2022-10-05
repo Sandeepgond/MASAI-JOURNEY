@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>Add Data</h1>
+        <input type="number" id="id" placeholder="Enter id"><br>
+        <input type="text" id="name" placeholder="Enter name"><br>
+        <input type="number" id="price" placeholder="Enter price"><br>
+        <button onclick="addProduct()">Add</button>
+    </div>
+    <div>
+        <h1>Delete Data</h1>
+        <input type="number" id="delete_id"><br>
+        <button onclick="Delete()">Delete</button>
+    </div>
+    <div>
+        <h1>Put Data</h1>
+        <input type="number" id="put_id"><br>
+        <button onclick="updateProduct()">Put</button>
+    </div>
+    <div>
+        <h1>Patch Data</h1>
+        <input type="number" id="patch_id"><br>
+        <button onclick="patch()">Patch</button>
+    </div>
+    <div>
+        <h1>Get Data</h1>
+        <input type="number" id="get_id"><br>
+        <button onclick="getData()">Get Data</button>
+    </div>
+</body>
+</html>
+<script>
+    async function addProduct(){
+        let add_data={
+            id:document.getElementById("id").value,
+            name:document.getElementById("name").value,
+            price:document.getElementById("price").value,    
+        }
+        add_data=JSON.stringify(add_data)
+        let response=await fetch(`http://localhost:3000/api/products`,{
+            method:"POST",
+
+            body:add_data,
+
+            headers:{
+                "Content-Type":"application/json"
+            }
+            
+        })
+        let data=await response.json()
+        console.log("data",data)
+    }
+
+    async function Delete(){
+        let id=document.getElementById("delete_id").value,
+         response=await fetch(`http://127.0.0.1:3000/api/products/${id}`,{
+            method:"DELETE",
+              
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+        let data=await response.json()
+    }
+
+
+    async function updateProduct(){
+        let id=document.getElementById("put_id").value,
+        response=await fetch(`http://127.0.0.1:3000/api/products/${id}`,{
+            method:"PUT",
+
+            body:JSON.stringify({
+                name:"Ronaldo",
+                price:"Infinity"
+            }),
+              
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+        let data=await response.json()
+    }
+
+    
+    async function patch(){
+        let id=document.getElementById("patch_id").value,
+        response=await fetch(`http://127.0.0.1:3000/api/products/${id}`,{
+            method:"PATCH",
+
+            body:JSON.stringify({
+                name:"MSD",
+            }),
+              
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+        let data=await response.json()
+    }
+
+     
+    async function getData(){
+        let id=document.getElementById("patch_id").value,
+        response=await fetch(`http://127.0.0.1:3000/api/products/${id}`,{
+            method:"GET",
+              
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+        let data=await response.json()
+        console.log("GetData",data)
+    }
+</script>

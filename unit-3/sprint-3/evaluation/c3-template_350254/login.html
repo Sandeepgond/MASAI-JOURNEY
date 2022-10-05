@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log-In</title>
+    <style>
+       #navbar{
+      display: flex;
+      justify-content: space-around;
+      background-color: aqua;
+      padding: 10px 0px 10px 0px;
+    }
+    a{
+      text-decoration: none;
+      color: black;
+    }
+    #log_in{
+      cursor: pointer;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="/index.html" id="home">Home</a>
+      <a href="/signup.html" id="signUp">Sign Up</a>
+    </div>
+    <div id="form">
+      <h1>User Log In</h1>
+      <form action="" id="form">
+        <input type="text" placeholder="Email" id="email"><br> <br>
+        <input type="text" placeholder="Password" id="password"><br> <br>
+        <input type="submit" id="log_in">
+      </form>
+      <!-- - The input fields will have ids:- "email" and "password"
+  - The log-in button will have id:- "log_in".   -->
+    </div>
+  </body>
+</html>
+
+<script>
+  var form=document.getElementById("form")
+  var userdata=JSON.parse(localStorage.getItem("users")) || []
+  form.addEventListener("submit",function(event){
+    event.preventDefault()
+    var data={
+      email:form.email.value,
+      password:form.password.value
+    }
+  
+  if(userdata==null){
+    alert("Please Create an account")
+  }
+  else if(userdata.email==data.email && userdata.password==data.password){
+    alert("Login is successful")
+    localStorage.setItem("signin",JSON.stringify(userdata));
+    window.location.href="./index.html"
+  }
+  else{
+    alert("user Does not exist")
+  }
+
+  })
+
+  
+    
+</script>

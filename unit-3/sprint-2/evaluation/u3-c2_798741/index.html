@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <style>
+      #navbar{
+      height: 30px;
+      display: flex;
+      justify-content: space-around;
+      background-color: rgb(6, 245, 165);
+      padding-top: 10px;
+      font-size: 20px;
+    }
+    a{
+      text-decoration: none;
+      margin-top: 20px;
+      color: black;
+     font-size: 20px;
+    }
+    img{
+      width: 400px;
+      height: 400px;
+    }
+    #groceries{
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      grid-template-rows: auto;
+      gap: 30px;
+    }
+    #item{
+      text-align: center;
+      border: 1px solid black;
+    }
+    .add_to_cart{
+      margin-bottom: 20px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    </style>
+  </head>
+
+  <body>
+    <div id="navbar">
+      <div>login</div>
+      <div>Sign-Up</div>
+      <div id="cart"> <a href="cart.html">Cart</a></div>
+      <div id="wallet">700</div>
+      <!-- Give cart link for navigation with id:- cart   -->
+      <!-- For wallet amount Show only number i.e only "500", no extra text like "amount = 500" with id :- "wallet" -->
+    </div>
+    <div id="groceries"></div>
+    <!--Show all groceries here in grid format-->
+    <!-- add an add to cart button to each item, give it HTML class as 'add_to_cart' -->
+  </body>
+</html>
+<script src="/scripts/index.js"></script>

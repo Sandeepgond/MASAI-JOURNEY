@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home page</title>
+    <style>
+      #navbar{
+        display: flex;
+        justify-content: space-around;
+        border: 1px solid red;
+        height: 50px;
+        background-color: aqua;
+      }
+      #form{
+        margin-left: 40%;
+        padding: 5px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <div id="user-form">
+      <!-- Profile Pic, (Id:- user_pic)
+Name, (Id:- user_name)
+Email, (Id:- user_email)
+country, (Id: user_country) >> Dropdown with options "India", "China", "Newzeland", "USA", "UK.  
+** Submit button will have Id:- "submit". -->
+<br>
+<form id="form">
+  <input type="text" placeholder="Enter Image Url " id="user_pic"> <br> <br>
+ <input type="text" placeholder="Enter Name" id="user_name"> <br> <br>
+ <input type="text" placeholder="Enter Email" id="user_email"> <br> <br>
+<select id="search_box"><br> <br>
+  <option value="in">India</option>
+  <option value="us">Usa</option>
+  <option value="ch">China</option>
+  <option value="uk">UK</option>
+  <option value="nz">New Zealand</option>
+</select>
+   <br> <br>
+<input type="submit">
+</form>
+    </div>
+  </body>
+</html>
+<script type="module">
+  import nav from "/scripts/index.js"
+  document.getElementById("navbar").innerHTML=nav();
+//  console.log(nav)
+</script>

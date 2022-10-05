@@ -1,0 +1,30 @@
+#main{
+    display: flex;
+    gap: 20px;
+  }
+  #sidebar{
+    width: 15%;
+    border: 1px solid red;
+    height: 230px;
+    background-color: antiquewhite;
+  }
+  h3{
+    background-color: aquamarine;
+  }
+  a{
+    text-decoration: none;
+    color: black;
+  }
+  img{
+      height: 120px;
+      width: 140px;
+  }
+  #box{
+      display: flex;
+      gap: 15px;
+      border: 1px solid blueviolet;
+      margin-top: 10px;
+  }
+  h2{
+      margin-top: -1px;
+  }

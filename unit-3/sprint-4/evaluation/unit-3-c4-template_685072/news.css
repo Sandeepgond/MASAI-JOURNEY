@@ -1,0 +1,22 @@
+img{
+    margin-top: 20px;
+    height: 150px;
+    width: 150px;
+  }
+  #box{
+    display: flex;
+    gap: 15px;
+    border: 1px solid;
+    margin-top: 10px;
+  }
+  #imagenews{
+    height: 500px;
+    width: 700px;
+    margin-left: 25%;
+  }
+  h2{
+    text-align: center;
+  }
+  h4{
+    text-align: center;
+  }
