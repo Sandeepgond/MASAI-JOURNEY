@@ -1,0 +1,1140 @@
+
+test> show dbs
+Assignment   40.00 KiB
+admin        40.00 KiB
+b20           8.00 KiB
+config      108.00 KiB
+local        76.00 KiB
+test> use Assignment
+switched to db Assignment
+Assignment> db.users.find({gender:"Male"},{_id:0})
+[
+  {
+    id: 3,
+    full_name: 'Austin Abramson',
+    age: 41,
+    gender: 'Male',
+    balance: 22851.32,
+    native: 'Japan',
+    relocate_to: 'France',
+    family_members: 1
+  },
+  {
+    id: 4,
+    full_name: 'Jacqueline Dargan',
+    age: 30,
+    gender: 'Male',
+    balance: 96103.99,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 1
+  },
+  {
+    id: 6,
+    full_name: 'Dennie Mander',
+    age: 54,
+    gender: 'Male',
+    balance: 82066.1,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 7,
+    full_name: 'Obie Finders',
+    age: 44,
+    gender: 'Male',
+    balance: 45655.22,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 9,
+    full_name: 'Lissie Jorin',
+    age: 28,
+    gender: 'Male',
+    balance: 75572.3,
+    native: 'Japan',
+    relocate_to: 'France',
+    family_members: 2
+  },
+  {
+    id: 11,
+    full_name: 'Alden Hovenden',
+    age: 27,
+    gender: 'Male',
+    balance: 79110.83,
+    native: 'United States',
+    relocate_to: 'France',
+    family_members: 1
+  },
+  {
+    id: 13,
+    full_name: 'Deeanne Cheshire',
+    age: 21,
+    gender: 'Male',
+    balance: 86093.17,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 21,
+    full_name: 'Pall Entwhistle',
+    age: 40,
+    gender: 'Male',
+    balance: 89740.26,
+    native: 'United Kingdom',
+    relocate_to: 'Sweden',
+    family_members: 1
+  },
+  {
+    id: 22,
+    full_name: 'Charissa Beushaw',
+    age: 48,
+    gender: 'Male',
+    balance: 24081.51,
+    native: 'Japan',
+    relocate_to: 'Russia',
+    family_members: 1
+  },
+  {
+    id: 27,
+    full_name: 'Millard Corwood',
+    age: 39,
+    gender: 'Male',
+    balance: 46678.2,
+    native: 'Japan',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 29,
+    full_name: 'Bentley Manshaw',
+    age: 47,
+    gender: 'Male',
+    balance: 50995.69,
+    native: 'United States',
+    relocate_to: 'France',
+    family_members: 1
+  }
+]
+Assignment> db.users.find({id:{$in:[2,4,6,8,10,12,14,16,18,20,22,24,26,28,30]}},{_id:0})
+[
+  {
+    id: 2,
+    full_name: 'Niccolo Phethean',
+    age: 22,
+    gender: 'Female',
+    balance: 57087.13,
+    native: 'Japan',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 4,
+    full_name: 'Jacqueline Dargan',
+    age: 30,
+    gender: 'Male',
+    balance: 96103.99,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 1
+  },
+  {
+    id: 6,
+    full_name: 'Dennie Mander',
+    age: 54,
+    gender: 'Male',
+    balance: 82066.1,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 8,
+    full_name: 'Florrie Hulse',
+    age: 30,
+    gender: 'Female',
+    balance: 47600.35,
+    native: 'Norway',
+    relocate_to: 'Russia',
+    family_members: 1
+  },
+  {
+    id: 10,
+    full_name: 'Babbette Croci',
+    age: 23,
+    gender: 'Female',
+    balance: 25206,
+    native: 'United States',
+    relocate_to: 'France',
+    family_members: 2
+  },
+  {
+    id: 12,
+    full_name: 'Cirillo Okenden',
+    age: 39,
+    gender: 'Female',
+    balance: 34743.63,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 14,
+    full_name: 'Aguste Lorent',
+    age: 30,
+    gender: 'Female',
+    balance: 98010.85,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 16,
+    full_name: 'Thain Bimson',
+    age: 20,
+    gender: 'Female',
+    balance: 22834.8,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 18,
+    full_name: 'Dominique Hearon',
+    age: 54,
+    gender: 'Female',
+    balance: 72510.59,
+    native: 'Japan',
+    relocate_to: 'Russia',
+    family_members: 1
+  },
+  {
+    id: 20,
+    full_name: 'Suki Stonall',
+    age: 40,
+    gender: 'Female',
+    balance: 38327.58,
+    native: 'United States',
+    relocate_to: 'France',
+    family_members: 1
+  },
+  {
+    id: 22,
+    full_name: 'Charissa Beushaw',
+    age: 48,
+    gender: 'Male',
+    balance: 24081.51,
+    native: 'Japan',
+    relocate_to: 'Russia',
+    family_members: 1
+  },
+  {
+    id: 24,
+    full_name: 'Ethelyn Shenton',
+    age: 52,
+    gender: 'Female',
+    balance: 49906.58,
+    native: 'United States',
+    relocate_to: 'France',
+    family_members: 1
+  },
+  {
+    id: 26,
+    full_name: 'Rustin Stilly',
+    age: 37,
+    gender: 'Female',
+    balance: 47012.53,
+    native: 'United States',
+    relocate_to: 'Sweden',
+    family_members: 1
+  },
+  {
+    id: 28,
+    full_name: 'Flori McGeouch',
+    age: 49,
+    gender: 'Female',
+    balance: 35360.33,
+    native: 'United States',
+    relocate_to: 'France',
+    family_members: 2
+  },
+  {
+    id: 30,
+    full_name: 'Marshall Cormack',
+    age: 31,
+    gender: 'Female',
+    balance: 48533.2,
+    native: 'Japan',
+    relocate_to: 'Russia',
+    family_members: 3
+  }
+]
+Assignment> db.users.find({native:"Japan"},{_id:0})
+[
+  {
+    id: 2,
+    full_name: 'Niccolo Phethean',
+    age: 22,
+    gender: 'Female',
+    balance: 57087.13,
+    native: 'Japan',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 3,
+    full_name: 'Austin Abramson',
+    age: 41,
+    gender: 'Male',
+    balance: 22851.32,
+    native: 'Japan',
+    relocate_to: 'France',
+    family_members: 1
+  },
+  {
+    id: 9,
+    full_name: 'Lissie Jorin',
+    age: 28,
+    gender: 'Male',
+    balance: 75572.3,
+    native: 'Japan',
+    relocate_to: 'France',
+    family_members: 2
+  },
+  {
+    id: 18,
+    full_name: 'Dominique Hearon',
+    age: 54,
+    gender: 'Female',
+    balance: 72510.59,
+    native: 'Japan',
+    relocate_to: 'Russia',
+    family_members: 1
+  },
+  {
+    id: 22,
+    full_name: 'Charissa Beushaw',
+    age: 48,
+    gender: 'Male',
+    balance: 24081.51,
+    native: 'Japan',
+    relocate_to: 'Russia',
+    family_members: 1
+  },
+  {
+    id: 23,
+    full_name: 'Tabor Boswell',
+    age: 40,
+    gender: 'Female',
+    balance: 48080.74,
+    native: 'Japan',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 27,
+    full_name: 'Millard Corwood',
+    age: 39,
+    gender: 'Male',
+    balance: 46678.2,
+    native: 'Japan',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 30,
+    full_name: 'Marshall Cormack',
+    age: 31,
+    gender: 'Female',
+    balance: 48533.2,
+    native: 'Japan',
+    relocate_to: 'Russia',
+    family_members: 3
+  }
+]
+Assignment>
+(To exit, press Ctrl+C again or Ctrl+D or type .exit)
+Assignment> db.users.find({$and:[{gender:"Female"},{native:"India"}]},{_id:0})
+
+Assignment> db.users.find({age:{$gt:25}},{_id:0})
+[
+  {
+    id: 3,
+    full_name: 'Austin Abramson',
+    age: 41,
+    gender: 'Male',
+    balance: 22851.32,
+    native: 'Japan',
+    relocate_to: 'France',
+    family_members: 1
+  },
+  {
+    id: 4,
+    full_name: 'Jacqueline Dargan',
+    age: 30,
+    gender: 'Male',
+    balance: 96103.99,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 1
+  },
+  {
+    id: 5,
+    full_name: 'Fredericka Twitchett',
+    age: 28,
+    gender: 'Female',
+    balance: 18461.35,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 6,
+    full_name: 'Dennie Mander',
+    age: 54,
+    gender: 'Male',
+    balance: 82066.1,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 7,
+    full_name: 'Obie Finders',
+    age: 44,
+    gender: 'Male',
+    balance: 45655.22,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 8,
+    full_name: 'Florrie Hulse',
+    age: 30,
+    gender: 'Female',
+    balance: 47600.35,
+    native: 'Norway',
+    relocate_to: 'Russia',
+    family_members: 1
+  },
+  {
+    id: 9,
+    full_name: 'Lissie Jorin',
+    age: 28,
+    gender: 'Male',
+    balance: 75572.3,
+    native: 'Japan',
+    relocate_to: 'France',
+    family_members: 2
+  },
+  {
+    id: 11,
+    full_name: 'Alden Hovenden',
+    age: 27,
+    gender: 'Male',
+    balance: 79110.83,
+    native: 'United States',
+    relocate_to: 'France',
+    family_members: 1
+  },
+  {
+    id: 12,
+    full_name: 'Cirillo Okenden',
+    age: 39,
+    gender: 'Female',
+    balance: 34743.63,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 14,
+    full_name: 'Aguste Lorent',
+    age: 30,
+    gender: 'Female',
+    balance: 98010.85,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 15,
+    full_name: 'Hoyt Keedwell',
+    age: 45,
+    gender: 'Female',
+    balance: 43347.73,
+    native: 'Norway',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 17,
+    full_name: 'Vikki Tonna',
+    age: 52,
+    gender: 'Female',
+    balance: 72014.18,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 18,
+    full_name: 'Dominique Hearon',
+    age: 54,
+    gender: 'Female',
+    balance: 72510.59,
+    native: 'Japan',
+    relocate_to: 'Russia',
+    family_members: 1
+  },
+  {
+    id: 19,
+    full_name: 'Padraig Conre',
+    age: 27,
+    gender: 'Female',
+    balance: 84325.66,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 20,
+    full_name: 'Suki Stonall',
+    age: 40,
+    gender: 'Female',
+    balance: 38327.58,
+    native: 'United States',
+    relocate_to: 'France',
+    family_members: 1
+  },
+  {
+    id: 21,
+    full_name: 'Pall Entwhistle',
+    age: 40,
+    gender: 'Male',
+    balance: 89740.26,
+    native: 'United Kingdom',
+    relocate_to: 'Sweden',
+    family_members: 1
+  },
+  {
+    id: 22,
+    full_name: 'Charissa Beushaw',
+    age: 48,
+    gender: 'Male',
+    balance: 24081.51,
+    native: 'Japan',
+    relocate_to: 'Russia',
+    family_members: 1
+  },
+  {
+    id: 23,
+    full_name: 'Tabor Boswell',
+    age: 40,
+    gender: 'Female',
+    balance: 48080.74,
+    native: 'Japan',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 24,
+    full_name: 'Ethelyn Shenton',
+    age: 52,
+    gender: 'Female',
+    balance: 49906.58,
+    native: 'United States',
+    relocate_to: 'France',
+    family_members: 1
+  },
+  {
+    id: 26,
+    full_name: 'Rustin Stilly',
+    age: 37,
+    gender: 'Female',
+    balance: 47012.53,
+    native: 'United States',
+    relocate_to: 'Sweden',
+    family_members: 1
+  }
+]
+Type "it" for more
+Assignment> db.users.find(db.users.find({$and:[{age:{$lt:50}},{current:"United States"}]},{_id:0})
+... db.users.find({$and:[{age:{$lt:50}},{current:"United States"}]},{_id:0})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (2:0)
+
+  1 | db.users.find(db.users.find({$and:[{age:{$lt:50}},{current:"United States"}]},{_id:0})
+> 2 | db.users.find({$and:[{age:{$lt:50}},{current:"United States"}]},{_id:0})
+    | ^
+  3 |
+
+Assignment> db.users.find({$and:[{age:{$lt:50}},{current:"United States"}]},{_id:0})
+
+Assignment> db.users.find({$and:[{age:{$lt:50}},{native:"United States"}]},{_id:0})
+[
+  {
+    id: 4,
+    full_name: 'Jacqueline Dargan',
+    age: 30,
+    gender: 'Male',
+    balance: 96103.99,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 1
+  },
+  {
+    id: 5,
+    full_name: 'Fredericka Twitchett',
+    age: 28,
+    gender: 'Female',
+    balance: 18461.35,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 7,
+    full_name: 'Obie Finders',
+    age: 44,
+    gender: 'Male',
+    balance: 45655.22,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 10,
+    full_name: 'Babbette Croci',
+    age: 23,
+    gender: 'Female',
+    balance: 25206,
+    native: 'United States',
+    relocate_to: 'France',
+    family_members: 2
+  },
+  {
+    id: 11,
+    full_name: 'Alden Hovenden',
+    age: 27,
+    gender: 'Male',
+    balance: 79110.83,
+    native: 'United States',
+    relocate_to: 'France',
+    family_members: 1
+  },
+  {
+    id: 12,
+    full_name: 'Cirillo Okenden',
+    age: 39,
+    gender: 'Female',
+    balance: 34743.63,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 13,
+    full_name: 'Deeanne Cheshire',
+    age: 21,
+    gender: 'Male',
+    balance: 86093.17,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 14,
+    full_name: 'Aguste Lorent',
+    age: 30,
+    gender: 'Female',
+    balance: 98010.85,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 16,
+    full_name: 'Thain Bimson',
+    age: 20,
+    gender: 'Female',
+    balance: 22834.8,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 19,
+    full_name: 'Padraig Conre',
+    age: 27,
+    gender: 'Female',
+    balance: 84325.66,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 20,
+    full_name: 'Suki Stonall',
+    age: 40,
+    gender: 'Female',
+    balance: 38327.58,
+    native: 'United States',
+    relocate_to: 'France',
+    family_members: 1
+  },
+  {
+    id: 25,
+    full_name: 'Sadye Brigg',
+    age: 21,
+    gender: 'Female',
+    balance: 14752.3,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 26,
+    full_name: 'Rustin Stilly',
+    age: 37,
+    gender: 'Female',
+    balance: 47012.53,
+    native: 'United States',
+    relocate_to: 'Sweden',
+    family_members: 1
+  },
+  {
+    id: 28,
+    full_name: 'Flori McGeouch',
+    age: 49,
+    gender: 'Female',
+    balance: 35360.33,
+    native: 'United States',
+    relocate_to: 'France',
+    family_members: 2
+  },
+  {
+    id: 29,
+    full_name: 'Bentley Manshaw',
+    age: 47,
+    gender: 'Male',
+    balance: 50995.69,
+    native: 'United States',
+    relocate_to: 'France',
+    family_members: 1
+  }
+]
+Assignment> db.users.countDocuments({relocate_to:"France"})
+9
+Assignment> db.users.find({$and:[{native:"United States"},{relocate_to:RussiaAAAAsAsAssAsAssAsAssAsAsAssAAAAAAssignment> db.users.find({$and:[{native:"United States"},{relocate_to:"Russia"}]},{_id:0})
+[
+  {
+    id: 4,
+    full_name: 'Jacqueline Dargan',
+    age: 30,
+    gender: 'Male',
+    balance: 96103.99,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 1
+  },
+  {
+    id: 5,
+    full_name: 'Fredericka Twitchett',
+    age: 28,
+    gender: 'Female',
+    balance: 18461.35,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 6,
+    full_name: 'Dennie Mander',
+    age: 54,
+    gender: 'Male',
+    balance: 82066.1,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 7,
+    full_name: 'Obie Finders',
+    age: 44,
+    gender: 'Male',
+    balance: 45655.22,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 12,
+    full_name: 'Cirillo Okenden',
+    age: 39,
+    gender: 'Female',
+    balance: 34743.63,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 13,
+    full_name: 'Deeanne Cheshire',
+    age: 21,
+    gender: 'Male',
+    balance: 86093.17,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 14,
+    full_name: 'Aguste Lorent',
+    age: 30,
+    gender: 'Female',
+    balance: 98010.85,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 16,
+    full_name: 'Thain Bimson',
+    age: 20,
+    gender: 'Female',
+    balance: 22834.8,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 17,
+    full_name: 'Vikki Tonna',
+    age: 52,
+    gender: 'Female',
+    balance: 72014.18,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 19,
+    full_name: 'Padraig Conre',
+    age: 27,
+    gender: 'Female',
+    balance: 84325.66,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 25,
+    full_name: 'Sadye Brigg',
+    age: 21,
+    gender: 'Female',
+    balance: 14752.3,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  }
+]
+Assignment> db.users.find({$and:[{native:"United States"},{relocate_to:"Russia"}]},{_id:0}).sort(Assignment> db.users.find({$and:[{native:"United States"},{relocate_to:"Russia"}]},{_id:0}).sort({age:1})
+[
+  {
+    id: 16,
+    full_name: 'Thain Bimson',
+    age: 20,
+    gender: 'Female',
+    balance: 22834.8,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 13,
+    full_name: 'Deeanne Cheshire',
+    age: 21,
+    gender: 'Male',
+    balance: 86093.17,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 25,
+    full_name: 'Sadye Brigg',
+    age: 21,
+    gender: 'Female',
+    balance: 14752.3,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 19,
+    full_name: 'Padraig Conre',
+    age: 27,
+    gender: 'Female',
+    balance: 84325.66,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 5,
+    full_name: 'Fredericka Twitchett',
+    age: 28,
+    gender: 'Female',
+    balance: 18461.35,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 4,
+    full_name: 'Jacqueline Dargan',
+    age: 30,
+    gender: 'Male',
+    balance: 96103.99,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 1
+  },
+  {
+    id: 14,
+    full_name: 'Aguste Lorent',
+    age: 30,
+    gender: 'Female',
+    balance: 98010.85,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 12,
+    full_name: 'Cirillo Okenden',
+    age: 39,
+    gender: 'Female',
+    balance: 34743.63,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 7,
+    full_name: 'Obie Finders',
+    age: 44,
+    gender: 'Male',
+    balance: 45655.22,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 2
+  },
+  {
+    id: 17,
+    full_name: 'Vikki Tonna',
+    age: 52,
+    gender: 'Female',
+    balance: 72014.18,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  },
+  {
+    id: 6,
+    full_name: 'Dennie Mander',
+    age: 54,
+    gender: 'Male',
+    balance: 82066.1,
+    native: 'United States',
+    relocate_to: 'Russia',
+    family_members: 3
+  }
+]
+db.users.find().sort({family_members:1},{age:-1})
+{ _id: ObjectId("634a54894fc06d987633cf17"),
+  id: 3,
+  full_name: 'Austin Abramson',
+  age: 41,
+  gender: 'Male',
+  balance: 22851.32,
+  native: 'Japan',
+  relocate_to: 'France',
+  family_members: 1 }
+{ _id: ObjectId("634a54894fc06d987633cf18"),
+  id: 4,
+  full_name: 'Jacqueline Dargan',
+  age: 30,
+  gender: 'Male',
+  balance: 96103.99,
+  native: 'United States',
+  relocate_to: 'Russia',
+  family_members: 1 }
+{ _id: ObjectId("634a54894fc06d987633cf1c"),
+  id: 8,
+  full_name: 'Florrie Hulse',
+  age: 30,
+  gender: 'Female',
+  balance: 47600.35,
+  native: 'Norway',
+  relocate_to: 'Russia',
+  family_members: 1 }
+{ _id: ObjectId("634a54894fc06d987633cf1f"),
+  id: 11,
+  full_name: 'Alden Hovenden',
+  age: 27,
+  gender: 'Male',
+  balance: 79110.83,
+  native: 'United States',
+  relocate_to: 'France',
+  family_members: 1 }
+{ _id: ObjectId("634a54894fc06d987633cf26"),
+  id: 18,
+  full_name: 'Dominique Hearon',
+  age: 54,
+  gender: 'Female',
+  balance: 72510.59,
+  native: 'Japan',
+  relocate_to: 'Russia',
+  family_members: 1 }
+{ _id: ObjectId("634a54894fc06d987633cf28"),
+  id: 20,
+  full_name: 'Suki Stonall',
+  age: 40,
+  gender: 'Female',
+  balance: 38327.58,
+  native: 'United States',
+  relocate_to: 'France',
+  family_members: 1 }
+{ _id: ObjectId("634a54894fc06d987633cf29"),
+  id: 21,
+  full_name: 'Pall Entwhistle',
+  age: 40,
+  gender: 'Male',
+  balance: 89740.26,
+  native: 'United Kingdom',
+  relocate_to: 'Sweden',
+  family_members: 1 }
+{ _id: ObjectId("634a54894fc06d987633cf2a"),
+  id: 22,
+  full_name: 'Charissa Beushaw',
+  age: 48,
+  gender: 'Male',
+  balance: 24081.51,
+  native: 'Japan',
+  relocate_to: 'Russia',
+  family_members: 1 }
+{ _id: ObjectId("634a54894fc06d987633cf2c"),
+  id: 24,
+  full_name: 'Ethelyn Shenton',
+  age: 52,
+  gender: 'Female',
+  balance: 49906.58,
+  native: 'United States',
+  relocate_to: 'France',
+  family_members: 1 }
+{ _id: ObjectId("634a54894fc06d987633cf2e"),
+  id: 26,
+  full_name: 'Rustin Stilly',
+  age: 37,
+  gender: 'Female',
+  balance: 47012.53,
+  native: 'United States',
+  relocate_to: 'Sweden',
+  family_members: 1 }
+{ _id: ObjectId("634a54894fc06d987633cf31"),
+  id: 29,
+  full_name: 'Bentley Manshaw',
+  age: 47,
+  gender: 'Male',
+  balance: 50995.69,
+  native: 'United States',
+  relocate_to: 'France',
+  family_members: 1 }
+{ _id: ObjectId("634a54894fc06d987633cf16"),
+  id: 2,
+  full_name: 'Niccolo Phethean',
+  age: 22,
+  gender: 'Female',
+  balance: 57087.13,
+  native: 'Japan',
+  relocate_to: 'Russia',
+  family_members: 2 }
+{ _id: ObjectId("634a54894fc06d987633cf1b"),
+  id: 7,
+  full_name: 'Obie Finders',
+  age: 44,
+  gender: 'Male',
+  balance: 45655.22,
+  native: 'United States',
+  relocate_to: 'Russia',
+  family_members: 2 }
+{ _id: ObjectId("634a54894fc06d987633cf1d"),
+  id: 9,
+  full_name: 'Lissie Jorin',
+  age: 28,
+  gender: 'Male',
+  balance: 75572.3,
+  native: 'Japan',
+  relocate_to: 'France',
+  family_members: 2 }
+{ _id: ObjectId("634a54894fc06d987633cf1e"),
+  id: 10,
+  full_name: 'Babbette Croci',
+  age: 23,
+  gender: 'Female',
+  balance: 25206,
+  native: 'United States',
+  relocate_to: 'France',
+  family_members: 2 }
+{ _id: ObjectId("634a54894fc06d987633cf21"),
+  id: 13,
+  full_name: 'Deeanne Cheshire',
+  age: 21,
+  gender: 'Male',
+  balance: 86093.17,
+  native: 'United States',
+  relocate_to: 'Russia',
+  family_members: 2 }
+{ _id: ObjectId("634a54894fc06d987633cf22"),
+  id: 14,
+  full_name: 'Aguste Lorent',
+  age: 30,
+  gender: 'Female',
+  balance: 98010.85,
+  native: 'United States',
+  relocate_to: 'Russia',
+  family_members: 2 }
+{ _id: ObjectId("634a54894fc06d987633cf23"),
+  id: 15,
+  full_name: 'Hoyt Keedwell',
+  age: 45,
+  gender: 'Female',
+  balance: 43347.73,
+  native: 'Norway',
+  relocate_to: 'Russia',
+  family_members: 2 }
+{ _id: ObjectId("634a54894fc06d987633cf24"),
+  id: 16,
+  full_name: 'Thain Bimson',
+  age: 20,
+  gender: 'Female',
+  balance: 22834.8,
+  native: 'United States',
+  relocate_to: 'Russia',
+  family_members: 2 }
+{ _id: ObjectId("634a54894fc06d987633cf27"),
+  id: 19,
+  full_name: 'Padraig Conre',
+  age: 27,
+  gender: 'Female',
+  balance: 84325.66,
+  native: 'United States',
+  relocate_to: 'Russia',
+  family_members: 2 }
