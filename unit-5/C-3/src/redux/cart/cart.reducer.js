@@ -76,50 +76,30 @@ export const cartReducer = (state = cartInitalState,{type,payload}) => {
       }
     }
 
-    case UPDATE_CART_ITEMS_LOADING:{
-      return {
-        ...state,
-        loading:true,
-        error:false
-      }
+   
+    case UPDATE_CART_ITEMS_LOADING: {
+      return { ...state, updateCartItem: { loading: true, error: false } };
     }
-    case UPDATE_CART_ITEMS_SUCCESS:{
-      return {
-        ...state,
-        updateCartItems:payload,
-        loading:false,
-        error:false
-      }
+    case UPDATE_CART_ITEMS_SUCCESS: {
+      const newItems = state.data.map((cI) => {
+        if (cI.id === payload.id) {
+          return payload;
+        } else return cI;
+      });
+      return { ...state, data: newItems, updateCartItem: { loading: false } };
     }
-    case UPDATE_CART_ITEMS_ERROR:{
-      return {
-        ...state,
-        loading:false,
-        error:true
-      }
+    case UPDATE_CART_ITEMS_ERROR: {
+      return { ...state, updateCartItem: { loading: false, error: true } };
     }
-    
-
-    case REMOVE_CART_ITEMS_LOADING:{
-      return {
-        ...state,
-        loading:true,
-        error:false
-      }
+    case REMOVE_CART_ITEMS_LOADING: {
+      return { ...state, removeCartItem: { loading: true, error: false } };
     }
-    case REMOVE_CART_ITEMS_SUCCESS:{
-      return {
-        ...state,
-        loading:false,
-        error:false
-      }
+    case REMOVE_CART_ITEMS_SUCCESS: {
+      const newItems = state.data.filter((cI) => cI.id !== payload.id);
+      return { ...state, data: newItems, removeCartItem: { loading: false } };
     }
-    case REMOVE_CART_ITEMS_ERROR:{
-      return {
-        ...state,
-        loading:false,
-        error:true
-      }
+    case REMOVE_CART_ITEMS_ERROR: {
+      return { ...state, removeCartItem: { loading: false, error: true } };
     }
     case RESET_CART_ITEMS:{
       return {
