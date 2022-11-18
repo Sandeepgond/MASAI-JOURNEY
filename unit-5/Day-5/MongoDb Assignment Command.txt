@@ -1,0 +1,406 @@
+
+C:\Users\sandeep>mongosh
+Current Mongosh Log ID: 6346c023fe774a2454f2f2d5
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.0
+Using MongoDB:          6.0.2
+Using Mongosh:          1.6.0
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2022-10-12T18:00:46.648+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+------
+   Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+   metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+   The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+   and anyone you share the URL with. MongoDB may use this information to make product
+   improvements and to suggest MongoDB products and deployment options to you.
+
+   To enable free monitoring, run the following command: db.enableFreeMonitoring()
+   To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+------
+
+test> use assignment
+switched to db assignment
+assignment> db.createCollection("users")
+{ ok: 1 }
+assignment> show dbs
+B20          8.00 KiB
+admin       40.00 KiB
+assignment   8.00 KiB
+config      72.00 KiB
+local       72.00 KiB
+assignment> db.users.insertOne({first_name:"Sandeep"},last_name:"Gond",email:"sandeep@gmail.com",gender:"Male",ip_address:"18.140.219.110",age:"20")
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:51)
+
+> 1 | db.users.insertOne({first_name:"Sandeep"},last_name:"Gond",email:"sandeep@gmail.com",gender:"Male",ip_address:"18.140.219.110",age:"20")
+    |                                                    ^
+  2 |
+
+assignment> db.users.insertOne({first_name:"Sandeep"},last_name:"Gond",email:"sandeep@gmail.com",gender:"Male",ip_address:18.140.219.110,age:20)
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:51)
+
+> 1 | db.users.insertOne({first_name:"Sandeep"},last_name:"Gond",email:"sandeep@gmail.com",gender:"Male",ip_address:18.140.219.110,age:20)
+    |                                                    ^
+  2 |
+
+assignment> db.users.insertOne({'first_name":"Sandeep"},"last_name":"Gond","email":"sandeep@gmail.com","gender":"Male","ip_address":"18.140.219.110","age":"20")
+Uncaught:
+SyntaxError: Unterminated string constant. (1:20)
+
+> 1 | db.users.insertOne({'first_name":"Sandeep"},"last_name":"Gond","email":"sandeep@gmail.com","gender":"Male","ip_address":"18.140.219.110","age":"20")
+    |                     ^
+  2 |
+
+assignment> db.users.insertOne({"first_name":"Sandeep","last_name":"Gond","email":"sandeep@gmail.com","gender":"Male","ip_address":"18.140.219.110","age":"20"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("6346c31ed27aa1ffe113fc59")
+}
+assignment> db.users.insertMany([{"first_name":"Sandeep","last_name":"Gond","email":"sandeep@gmail.com","gender":"Male","ip_address":"18.140.219.110","age":"20"},{"first_name":"Shankar","last_name":"Sharma","email":"sandeepgond@gmail.com","gender":"Male","ip_address":"18.140.219.110","age":"21"},{"first_name":"Swapnil","last_name":"Gote","email":"sandeepgond13@gmail.com","gender":"Male","ip_address":"18.140.219.110","age":"22"},{"first_name":"Anjali","last_name":"kuswaha","email":"anjali@gmail.com","gender":"Female","ip_address":"18.140.219.110","age":"23"}])
+{   ip_address: '18.140.219.110',
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("6346c4b8d27aa1ffe113fc5a"),
+    '1': ObjectId("6346c4b8d27aa1ffe113fc5b"),
+    '2': ObjectId("6346c4b8d27aa1ffe113fc5c"),
+    '3': ObjectId("6346c4b8d27aa1ffe113fc5d")
+  }
+}
+assignment> db.users.find()
+[
+  {
+    _id: ObjectId("6346c31ed27aa1ffe113fc59"),
+    first_name: 'Sandeep',
+    last_name: 'Gond',
+    email: 'sandeep@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '20'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5a"),
+    first_name: 'Sandeep',
+    last_name: 'Gond',
+    email: 'sandeep@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '20'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5b"),
+    first_name: 'Shankar',
+    last_name: 'Sharma',
+    email: 'sandeepgond@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '21'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5c"),
+    first_name: 'Swapnil',
+    last_name: 'Gote',
+    email: 'sandeepgond13@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '22'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5d"),
+    first_name: 'Anjali',
+    last_name: 'kuswaha',
+    email: 'anjali@gmail.com',
+    gender: 'Female',
+    ip_address: '18.140.219.110',
+    age: '23'
+  }
+]
+assignment> db,users.find({gender:"Male"})
+ReferenceError: users is not defined
+assignment> db.users.find({gender:"Male"})
+[
+  {
+    _id: ObjectId("6346c31ed27aa1ffe113fc59"),
+    first_name: 'Sandeep',
+    last_name: 'Gond',
+    email: 'sandeep@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '20'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5a"),
+    first_name: 'Sandeep',
+    last_name: 'Gond',
+    email: 'sandeep@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '20'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5b"),
+    first_name: 'Shankar',
+    last_name: 'Sharma',
+    email: 'sandeepgond@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '21'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5c"),
+    first_name: 'Swapnil',
+    last_name: 'Gote',
+    email: 'sandeepgond13@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '22'
+  }
+]
+assignment> db.users.find({gender:"Female"})
+[
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5d"),
+    first_name: 'Anjali',
+    last_name: 'kuswaha',
+    email: 'anjali@gmail.com',
+    gender: 'Female',
+    ip_address: '18.140.219.110',
+    age: '23'
+  }
+]
+assignment> db.users.updateOne({name:"Sandeep"},{$set:{name:"Spiderman"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+assignment> db.users.updateOne({first_name:"Sandeep"},{$set:{first_name:"Spiderman"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+assignment> db.users.find()
+[
+  {
+    _id: ObjectId("6346c31ed27aa1ffe113fc59"),
+    first_name: 'Spiderman',
+    last_name: 'Gond',
+    email: 'sandeep@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '20'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5a"),
+    first_name: 'Sandeep',
+    last_name: 'Gond',
+    email: 'sandeep@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '20'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5b"),
+    first_name: 'Shankar',
+    last_name: 'Sharma',
+    email: 'sandeepgond@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '21'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5c"),
+    first_name: 'Swapnil',
+    last_name: 'Gote',
+    email: 'sandeepgond13@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '22'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5d"),
+    first_name: 'Anjali',
+    last_name: 'kuswaha',
+    email: 'anjali@gmail.com',
+    gender: 'Female',
+    ip_address: '18.140.219.110',
+    age: '23'
+  }
+]
+assignment> db.users.find({first_name:"Spiderman"})
+[
+  {
+    _id: ObjectId("6346c31ed27aa1ffe113fc59"),
+    first_name: 'Spiderman',
+    last_name: 'Gond',
+    email: 'sandeep@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '20'
+  }
+]
+assignment> db.users.updateMany({last_name:"Gond"},{$set:{last_name:"Ahmad"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+assignment> db.users.find({last_name:"Ahmad"})
+[
+  {
+    _id: ObjectId("6346c31ed27aa1ffe113fc59"),
+    first_name: 'Spiderman',
+    last_name: 'Ahmad',
+    email: 'sandeep@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '20'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5a"),
+    first_name: 'Sandeep',
+    last_name: 'Ahmad',
+    email: 'sandeep@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '20'
+  }
+]
+assignment> db.users.delete({name:"Spiderman"})
+TypeError: db.users.delete is not a function
+assignment> db.users.deleteOne({name:"Spiderman"})
+{ acknowledged: true, deletedCount: 0 }
+assignment> db.users.find()
+[
+  {
+    _id: ObjectId("6346c31ed27aa1ffe113fc59"),
+    first_name: 'Spiderman',
+    last_name: 'Ahmad',
+    email: 'sandeep@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '20'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5a"),
+    first_name: 'Sandeep',
+    last_name: 'Ahmad',
+    email: 'sandeep@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '20'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5b"),
+    first_name: 'Shankar',
+    last_name: 'Sharma',
+    email: 'sandeepgond@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '21'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5c"),
+    first_name: 'Swapnil',
+    last_name: 'Gote',
+    email: 'sandeepgond13@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '22'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5d"),
+    first_name: 'Anjali',
+    last_name: 'kuswaha',
+    email: 'anjali@gmail.com',
+    gender: 'Female',
+    ip_address: '18.140.219.110',
+    age: '23'
+  }
+]
+assignment> db.users.deleteOne({first_name:"Spiderman"})
+{ acknowledged: true, deletedCount: 1 }
+assignment> db.users.find()
+[
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5a"),
+    first_name: 'Sandeep',
+    last_name: 'Ahmad',
+    email: 'sandeep@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '20'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5b"),
+    first_name: 'Shankar',
+    last_name: 'Sharma',
+    email: 'sandeepgond@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '21'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5c"),
+    first_name: 'Swapnil',
+    last_name: 'Gote',
+    email: 'sandeepgond13@gmail.com',
+    gender: 'Male',
+    ip_address: '18.140.219.110',
+    age: '22'
+  },
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5d"),
+    first_name: 'Anjali',
+    last_name: 'kuswaha',
+    email: 'anjali@gmail.com',
+    gender: 'Female',
+    ip_address: '18.140.219.110',
+    age: '23'
+  }
+]
+assignment> db.users.deleteMany({gender:"Male"})
+{ acknowledged: true, deletedCount: 3 }
+assignment> db.users.find()
+[
+  {
+    _id: ObjectId("6346c4b8d27aa1ffe113fc5d"),
+    first_name: 'Anjali',
+    last_name: 'kuswaha',
+    email: 'anjali@gmail.com',
+    gender: 'Female',
+    ip_address: '18.140.219.110',
+    age: '23'
+  }
+]
+assignment> db.users.drop()
+true
+assignment> show collections
+
+assignment> db.dropDatabase()
+{ ok: 1, dropped: 'assignment' }
+assignment> show dbs
+B20       8.00 KiB
+admin    40.00 KiB
+config  108.00 KiB
+local    72.00 KiB
+assignment> db.dropDatabase()
+{ ok: 1, dropped: 'assignment' }
+assignment> show dbs
+B20       8.00 KiB
+admin    40.00 KiB
+config  108.00 KiB
+local    72.00 KiB
