@@ -1,9 +1,0 @@
-{
-    "todos":[
-        {
-            "id":1,
-            "name":"Sandeep",
-            "status":true
-        }
-    ]
-}
