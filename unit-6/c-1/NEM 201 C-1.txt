@@ -1,0 +1,85 @@
+1-> db.c1.aggregate([{$group:{_id:'$Region',total:{$sum:"$Population"}}},{$match:{_id:"EASTERN EUROPE"}}])
+ans-> { _id: 'EASTERN EUROPE', total: 119914717 }
+
+2-> db.c1.aggregate([{$group:{_id:'$Region',total:{$avg:"$Population"}}}])
+ans->   	{ _id: 'EASTERN EUROPE', total: 9992893.083333334 }
+	{ _id: 'LATIN AMER. & CARIB', total: 12484991.08888889 }
+	{ _id: 'NEAR EAST', total: 12191773.5625 }
+	{ _id: 'ASIA (EX. NEAR EAST)', total: 131713651.28571428 }
+	{ _id: 'BALTICS', total: 2394991.3333333335 }
+	{ _id: 'SUB-SAHARAN AFRICA', total: 14694843.137254901 }
+	{ _id: 'C.W. OF IND. STATES', total: 23340129 }
+	{ _id: 'NORTHERN AMERICA', total: 66334461.4 }	
+	{ _id: 'OCEANIA', total: 1577698.1904761905 }
+	{ _id: 'WESTERN EUROPE', total: 14154999.92857143 }
+	{ _id: 'NORTHERN AFRICA', total: 26901188.833333332 }
+
+3->db.c1.aggregate([{$group: {_id: "$Region", average:{$avg:"$Birthrate"} } } ])
+ans->	{ _id: 'C.W. OF IND. STATES', average: 17.855833333333333 }
+	{ _id: 'NORTHERN AMERICA', average: 13.154 }
+	{ _id: 'OCEANIA', average: 21.055238095238096 }
+	{ _id: 'WESTERN EUROPE', average: 10.553571428571429 }
+	{ _id: 'LATIN AMER. & CARIB', average: 19.08111111111111 }
+	{ _id: 'EASTERN EUROPE', average: 9.506666666666666 }
+	{ _id: 'NORTHERN AFRICA', average: 17.345 }
+	{ _id: 'NEAR EAST', average: 25.031875 }
+	{ _id: 'ASIA (EX. NEAR EAST)', average: 21.157857142857143 }
+	{ _id: 'BALTICS', average: 9.343333333333334 }
+	{ _id: 'SUB-SAHARAN AFRICA', average: 36.043921568627454 }
+
+
+4-> db.c1.aggregate([{$group:{_id:'$Country'}},{$sort:{GDP:1,Population:-1}},{$limit:10}])
+ans->	{ _id: 'Saint Lucia' }
+	{ _id: 'Algeria' }
+	{ _id: 'Colombia' }
+	{ _id: 'Kyrgyzstan' }
+	{ _id: 'India' }
+	{ _id: 'Singapore' }
+	{ _id: 'Iraq' }
+	{ _id: 'Ireland' }
+	{ _id: 'Sierra Leone' }
+	{ _id: 'Denmark' }
+
+5->db.c1.aggregate([{$match:{Birthrate:{$lt:20}}},{$group:{_id:"$Region",totalBirthrate:{$sum:"$Birthrate"}}},    {$sort:{totalBirthrate:1}},{$limit:1}])
+ans->	{ _id: 'BALTICS', totalBirthrate: 28.03 }
+
+
+6-> db.c1.aggregate([{$group:{_id:'$Region',totalPolulation:{$sum:"$Population"}}}])
+ans->	{ _id: 'LATIN AMER. & CARIB', totalPolulation: 561824599 }
+	{ _id: 'NORTHERN AFRICA', totalPolulation: 161407133 }
+	{ _id: 'ASIA (EX. NEAR EAST)', totalPolulation: 3687982236 }
+	{ _id: 'NEAR EAST', totalPolulation: 195068377 }
+	{ _id: 'SUB-SAHARAN AFRICA', totalPolulation: 749437000 }
+	{ _id: 'BALTICS', totalPolulation: 7184974 }
+	{ _id: 'C.W. OF IND. STATES', totalPolulation: 280081548 }
+	{ _id: 'NORTHERN AMERICA', totalPolulation: 331672307 }
+	{ _id: 'OCEANIA', totalPolulation: 33131662 }
+	{ _id: 'WESTERN EUROPE', totalPolulation: 396339998 }
+	{ _id: 'EASTERN EUROPE', totalPolulation: 119914717 }
+
+7->db.c1.aggregate([{$group:{_id:'$Region',avgBirthrate:{$avg:"$Birthrate"}}},{$sort:{avgBirthrate:1}}])
+ans->   { _id: 'BALTICS', avgBirthrate: 9.343333333333334 }
+	{ _id: 'EASTERN EUROPE', avgBirthrate: 9.506666666666666 }
+	{ _id: 'WESTERN EUROPE', avgBirthrate: 10.553571428571429 }
+	{ _id: 'NORTHERN AMERICA', avgBirthrate: 13.154 }
+	{ _id: 'NORTHERN AFRICA', avgBirthrate: 17.345 }
+	{ _id: 'C.W. OF IND. STATES', avgBirthrate: 17.855833333333333 }
+	{ _id: 'LATIN AMER. & CARIB', avgBirthrate: 19.08111111111111 }
+	{ _id: 'OCEANIA', avgBirthrate: 21.055238095238096 }
+	{ _id: 'ASIA (EX. NEAR EAST)',avgBirthrate: 21.157857142857143 }
+	{ _id: 'NEAR EAST', avgBirthrate: 25.031875 }
+	{ _id: 'SUB-SAHARAN AFRICA', avgBirthrate: 36.043921568627454 }
+
+8->db.c1.aggregate([{$group:{_id:"$Country",totPop:{$sum:"$Population"}}},{$sort:{totPop:-1}},{$skip:10},   {$limit:10}])
+ans->	{ _id: 'Mexico', totPop: 107449525 }
+	{ _id: 'Philippines', totPop: 89468677 }
+	{ _id: 'Vietnam', totPop: 84402966 }
+	{ _id: 'Germany', totPop: 82422299 }
+	{ _id: 'Egypt', totPop: 78887007 }
+	{ _id: 'Ethiopia', totPop: 74777981 }
+	{ _id: 'Turkey', totPop: 70413958 }
+	{ _id: 'Iran', totPop: 68688433 }
+	{ _id: 'Thailand', totPop: 64631595 }
+	{ _id: 'Congo, Dem. Rep.', totPop: 62660551 }
+
+9->
