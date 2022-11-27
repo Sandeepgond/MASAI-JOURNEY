@@ -1,0 +1,40 @@
+*Find all the countries in region "Asia"
+db.data.find({region: "Asia"})
+
+*Find all the countries with currency: "EUR"?
+db.data.find({currency: "EUR"})
+
+*Find all the countries whose timezone's gmtOffset is 3600
+db.data.find({"timezones.gmtOffset":3600})
+
+*Find all the countries whose timezone's gmtOffset is 3600 AND timezone name is Central European Time (or CET)
+db.data.find({"timezones.gmtOffset":3600},{"timezones.zoneName":"Central European Time"})
+
+
+*Find All the countries with more than 1 time zone (hint: size of array)
+db.data.find({$expr:{$gt:[{$size:"$timezones"},1]}})
+
+*Find All the countries with "Korean" translation (KR)?
+ db.data.find({},{"translations.kr":1})
+
+
+**Work with the data, use rest of the operators to find any other data for practice you want
+
+* $rename
+ db.data.updateOne({ id: 1 },{ $rename: { 'name': 'afghani' }})
+
+db.data.insertOne( { id: 1, scores: [ 8, 9, 10 ] } )
+
+* $pop 
+db.data.updateOne( { id: 1 }, { $pop: { scores: -1 } } )
+
+* $push
+db.data.updateOne( { id: 1 }, { $push: { scores: -1 } } )
+
+* $min and $max
+db.data.aggregate([ { $project: { quizMin: { $min: "$score"}, } } ])
+db.data.aggregate([ { $project: { quizMax: { $max: "$score"}, } } ])
+
+* $unset
+db.data.updateOne({ id: "1" },{ $unset: { quantity: "", instock: "" } }
+)
