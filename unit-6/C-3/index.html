@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trading Market</title>
+    <style>
+      button{
+        color: white;
+        background-color: green;
+        border: none;
+        padding: 5px 25px 5px 25px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style='margin:auto;text-align: center;margin-top:10rem'>Trading Currency App</h1>
+    <table border="1px solid black" style='margin:auto;width: 50%;text-align: center;margin-top:1rem;'>
+      <tr>
+        <th>Currency Name</th>
+        <th>Buy</th>
+        <th>Current Value</th>
+      </tr>
+      <tr id="row1">
+        <td>Currency A</td>
+      </tr>
+      <tr id="row2">
+        <td>Currency B</td>
+      </tr>
+      <tr id="row3">
+        <td>Currency C</td>
+      </tr>
+    </table>
+
+    <script src="/socket.io/socket.io.min.js"></script>
+    <script>
+      const socket = io();
+      const row1 = document.getElementById("row1");
+      const row2 = document.getElementById("row2");
+      const row3 = document.getElementById("row3");
+
+      table1 = document.createElement("td");
+      tt1 = document.createElement("button");
+      socket.on("currencyA", (data) => {
+        table1.innerText = " ";
+        table1.innerText = data;
+        row1.appendChild(table1);
+
+         tt1.innerText = "BUY";
+      })
+        tt1.addEventListener("click", () => {
+          buy();
+        })
+      row1.appendChild(tt1);
+
+      table2 = document.createElement("td");
+      tt2= document.createElement("button");
+      socket.on("currencyB", (data) => {
+        table2.innerText = "";
+        table2.innerText = data;
+        row2.appendChild(table2);
+         tt2.innerText = "BUY";
+      });
+        tt2.addEventListener("click", () => {
+          buy();
+        });
+      row2.appendChild(tt2);
+
+      table3 = document.createElement("td");
+      tt3 = document.createElement("button");
+      socket.on("currencyC", (data) => {
+        table3.innerText = "";
+        table3.innerText = data; 
+        row3.appendChild(table3);
+        tt3.innerText = "BUY";
+      });
+      tt3.addEventListener("click", () => {
+      buy();
+      });
+      row3.appendChild(tt3);
+
+      const buy=()=>{
+          let stock= window.prompt("number of stocks" )
+          setTimeout(()=>{
+            alert(`${stock} order processed successfully`)
+          },5000)
+          socket.emit("memory",stock)
+      }
+    </script>
+  </body>
+</html>
