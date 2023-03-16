@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="nav">
+      <a href="index.html"><div>Home Page </div></a>
+      <a href="cat.html"> <div>Cat Page</div></a>
+      <a href="favourites.html"><div>Favourites Page</div></a>
+    </div>
+    <div>
+      <div id="cat-images"></div>
+    </div>
+    <script>
+      const apiKey=`live_qzEAC1tyCitUvPXm3OsCHIXxfYm1nrND51hP51zad99eZNbYO0R0SRxddG42QIvg`
+
+      const url = "https://api.thecatapi.com/v1";
+      const getCatImages = async (breedId) => {
+        try {
+          const response = await fetch( `${url}/images/search?limit=10&breed_id=${breedId}`,{
+              headers: {
+                "x-api-key": apiKey,
+              },
+            }
+          )
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+      const displayImages = (data) => {
+        let catImages = document.getElementById("cat-images");
+        catImages.innerHTML = "";
+        data.map((image) => {
+          const card = document.createElement("div");
+          card.classList.add("card");
+          const img = document.createElement("img");
+          img.src = image.url;
+          img.alt = "Cat Image";
+          const button = document.createElement("button");
+          button.textContent = "Add to Favourites";
+          button.addEventListener("click", () => {
+            const favourites =JSON.parse(localStorage.getItem("favourites")) || [];
+            favourites.push(image);
+            localStorage.setItem("favourites", JSON.stringify(favourites));
+            button.disabled = true;
+            button.textContent = "Added to Favourites";
+          });
+          card.append(img,button);
+          catImages.appendChild(card);
+        });
+      };
+
+      
+      const initCat = async () => {
+        const breedId = localStorage.getItem("breedId");
+        const images = await getCatImages(breedId);
+        displayImages(images);
+      };
+
+      initCat();
+    </script>
+  </body>
+</html>

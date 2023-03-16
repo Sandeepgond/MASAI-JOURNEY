@@ -1,0 +1,237 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+#nav{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 30px;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    padding-top: 20px;
+}
+#right_nav{
+    display: flex;  
+    gap: 70px;      
+    padding-right: 30px;   
+}
+#right_nav button{
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    padding: 5px 15px 5px 15px ;
+    background-color: white;
+    font-weight: 600;
+    margin-top: -20px;
+
+}
+#color_div{
+    color: white;
+    text-align: center;
+    letter-spacing: 8px;
+    font-weight: 800;
+    font-size: 18px;
+}
+#color_div>h1{
+    padding-top: 100px;
+    padding-bottom: -100px;
+}
+#color_div>img{
+    width: 100%; 
+    display: block;
+}
+#grid_layout{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(3,1fr);
+}
+#grid_layout>div>img{
+    width: 100%;
+    display: block;
+}
+#grid_layout>div>h1{
+    font-weight: 600;
+}
+#grid_layout>div>p{
+    padding-top: 10px;
+   line-height: 25px;
+   color: rgb(80, 78, 78);
+}
+#grid_layout>div>button{   
+    margin-top: 30px;
+   /* line-height: 25px; */
+   font-weight: 600;
+   /* box-shadow: rgba(240, 46, 170, 0.4) 0px 5px; */
+   border: none;
+   /* background-color:white; */
+}
+
+#grid_layout>div:first-child{
+    /* text-align: center; */
+    padding: 100px;
+    padding-right: 150px;
+}
+#grid_layout>div:nth-child(4){
+    /* text-align: center; */
+    padding: 100px;
+    padding-right: 150px;
+}
+.fifth_div>h1{
+    text-align: center;
+    /* color: red; */
+    margin-top: -150px;
+    opacity: 60%;
+   
+}
+.center{
+    text-align: center;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+#last_div{
+    width: 90%;
+    margin: auto;
+    /* border: 1px solid red; */
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    padding-bottom: 30px;
+}
+#last_div>div{
+    /* border: 1px solid green; */
+    text-align: center;
+    padding:50px 50px 10px 50px ;
+}
+#grid_layout+h2{
+    text-align: center;
+    letter-spacing: 3px;
+    color: grey;
+    margin-top: 100px;
+}
+#last_div>div>img{
+    border-radius: 50%;
+}
+#last_div>div>p{
+    color: grey;
+    line-height: 20px;
+}
+#last_img_box{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+#last_img_box>div>img{
+    width: 100%;
+    display: block;
+}
+#footer{
+    height: 300px;
+    background-color: #90D4C5;
+    text-align: center;
+    padding-top: 50px;
+}
+.flex{
+    width: 25%;
+    margin: auto;
+    display: flex;
+    color: grey;
+    justify-content: space-between;
+}
+.promotion{
+    width: 15%;
+    margin: auto;
+    display: flex;
+    color: grey;
+    justify-content: space-between;
+}
+.promotion>div>img{
+    width: 100%;
+    display: block;
+}
+#three_lines{
+    display: none;
+}
+
+@media screen and (max-width: 375px)  {
+    #right_nav {
+        display: none;
+    }
+    #grid_layout{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        grid-template-rows: auto;
+    }
+    #last_div{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        padding-bottom: 30px;
+    }
+    #last_img_box{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
+    .flex{
+        width: 90%;
+        display: flex;
+        justify-content: space-around;
+        gap: 30px;
+        font-weight: bold;
+        color: #306e6e;
+
+    }
+    .promotion{
+        width: 50%;
+        margin: auto;
+        display: flex;
+        color: grey;
+        justify-content: space-between;
+    }
+    #grid_layout>div>h1{
+        font-weight: 600;
+    }
+    #grid_layout>div>p{
+        padding-top: 10px;
+       line-height: 25px;
+       color: grey;
+
+    }
+    #grid_layout>div>button{   
+        margin-top: 30px;
+       line-height: 25px;
+       font-weight: 600;
+       border: none;
+       background-color:white;
+    }
+    #grid_layout>div:first-child{
+       text-align: center;
+       padding: 10px;
+       padding-bottom: 20px;
+    }
+    #grid_layout>div:nth-child(4){
+        text-align: center;
+        padding: 10px;
+        padding-bottom: 20px;
+     }
+   
+    .fifth_div>h1{
+        
+        opacity: 60%;
+        
+    }
+    .center{
+       text-align: center;
+       padding-left: 0px;
+       padding-right: 0px;
+       
+    }
+    #three_lines {
+        display: block;
+
+   }
+
+   #three_lines>img {
+        width: 25px;
+        padding-right: 10px;
+   }
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="nav">
+        <a href="index.html">Home</a>
+        <a href="admin.html">Admin Page</a>
+        <a href="hotels.html">Hotels Page</a>
+    </div>
+    <div id="toggle">
+        <button id="lbtn">Login</button>
+        <button id="rbtn">Register</button>
+    </div>
+    <div id="register">
+        <h1>Register Form</h1>
+        <br>
+        <form id="registerForm">
+            <input type="text" placeholder="Enter Username" id="username"> <br><br>
+            <input type="email" placeholder="Enter Email" id="email" required> <br><br>
+            <input type="password" placeholder="Enter Password" id="password" minlength="5" required><br><br>
+            <input type="password" placeholder="ReEnter Password" id="repass" minlength="5" required><br><br>
+            <button>Register</button>
+        </form>
+    </div>
+    <hr>
+    <div id="login">
+        <h1>Login Form</h1>
+        <form id="loginForm">
+            <input type="email" placeholder="Enter Email" id="login_email" required> <br><br>
+            <input type="password" placeholder="Enter Password" id="login_password" minlength="5" required><br><br>
+            <button>Login</button>
+        </form>
+    </div>
+</body>
+<script>
+    let userData=document.querySelector("#registerForm").addEventListener("submit",registerFunction)
+    function registerFunction(){
+        event.preventDefault()
+        let username=document.getElementById("username").value
+        let email=document.getElementById("email").value
+        let password=document.getElementById("password").value
+        let repass=document.getElementById("repass").value
+        console.log(username,password,email,repass)
+        if(password===repass){
+            let send_data = {
+                username,email,password,repass
+            };
+            // console.log(send_data)
+            fetch(`https://sandeepapi-gxyn.onrender.com/users`, {
+            method: 'POST',
+            body: JSON.stringify(send_data),
+            
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8'
+            },
+            })
+            .then((res)=>res.json())
+            .then((res)=>console.log(res))
+            .catch((err)=>console.log(err))
+            alert("Register Successfull")
+            window.location.href="hotels.html"
+        }
+        else{
+            alert("check reenter password")
+        }
+    }
+
+    let loginData=document.querySelector("#loginForm").addEventListener("submit",loginFunction)
+    function loginFunction(){
+        event.preventDefault()
+        let login_email=document.getElementById("login_email").value
+        let login_password=document.getElementById("login_password").value
+        console.log(login_password,login_email)
+        if(login_email==="eve.holt@reqres.in"){
+            alert("admin login successfull")
+            window.location.href="admin.html"
+        }
+        else{
+            let send_data={login_email,login_password}
+            fetch(`https://sandeepapi-gxyn.onrender.com/users`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8'
+            },
+            body: JSON.stringify(send_data),
+            })
+            .then((res)=>res.json())
+            .then((res)=>{
+                if(res.token){
+                    alert("Login Successfull")
+                    window.location.href="hotels.html"
+                }
+                else{
+                    alert("login failed")
+                }
+            })
+            .catch((err)=>console.log(err))
+        }
+    }
+    registerForm=document.getElementById('register')
+    loginForm = document.getElementById("login")
+    registerForm.style.display='none'
+
+    let loginBtn =document.getElementById('lbtn')
+    let registerBtn =document.getElementById('rbtn')
+
+
+
+    loginBtn.addEventListener('click',()=>{
+    registerForm.style.display='none'
+    loginForm.style.display='block'
+    })
+
+    registerBtn.addEventListener('click',()=>{
+    registerForm.style.display='block'
+    loginForm.style.display='none'
+    })
+    
+</script>
+</html>

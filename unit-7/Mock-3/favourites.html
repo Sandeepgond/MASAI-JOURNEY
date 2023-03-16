@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="nav">
+      <a href="index.html"><div>Home Page </div></a>
+      <a href="cat.html"> <div>Cat Page</div></a>
+      <a href="favourites.html"><div>Favourites Page</div></a>
+    </div>
+
+    <div>
+      <h1>Favourite Cat Images</h1>
+      <div id="favourites"></div>
+    </div>
+    
+    <script>
+      const displayFavourites = () => {
+        const favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+        const container = document.getElementById("favourites");
+        container.innerHTML = "";
+        
+        if (favourites.length === 0) {
+          const message = document.createElement("p");
+          message.innerText = "You have no favourites yet!";
+          container.append(message);
+        } else {
+          favourites.forEach((favourite, index) => {
+            const card = document.createElement("div");
+            card.classList.add("card");
+            const img = document.createElement("img");
+            img.src = favourite.url;
+            img.alt = "Favourite Cat Image"
+            const button = document.createElement("button");
+            button.innerText = "Remove from Favourites";
+            button.addEventListener("click", () => {
+              const favourites = JSON.parse(localStorage.getItem("favourites"));
+              favourites.splice(index, 1);
+              localStorage.setItem("favourites", JSON.stringify(favourites));
+              displayFavourites();
+            });
+            card.append(img,button);
+            container.append(card);
+          });
+        }
+      };
+
+      displayFavourites();
+    </script>
+  </body>
+</html>

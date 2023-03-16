@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin page</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div id="nav">
+        <a href="index.html">Home</a>
+        <a href="admin.html">Admin Page</a>
+        <a href="hotels.html">Hotels Page</a>
+    </div>
+
+    <div id="forma">
+    <form id="room-form">
+        <label for="category">Category:</label>
+        <select id="category" required>
+            <option value="">Select Category</option>
+            <option value="Family">Family</option>
+            <option value="Deluxe">Deluxe</option>
+            <option value="Suite">Suite</option>
+        </select>
+      <br>
+      <label for="image-url">Image URL:</label>
+      <input type="url" id="image-url" required>
+      <br>
+      <label>Type of Room:</label>
+      <label for="ac-room">
+        <input type="radio" id="ac-room" name="room-type" value="AC" required>
+        AC
+      </label>
+      <label for="non-ac-room">
+        <input type="radio" id="non-ac-room" name="room-type" value="Non-AC" required>
+        Non-AC
+      </label>
+      <br>
+      <label for="bed-type">Bed Type:</label>
+        <select id="bed-type" required>
+            <option value="">Select Bed Type</option>
+            <option value="Single">Single</option>
+            <option value="Double">Double</option>
+        </select>
+      <br>
+      <label for="no-of-adults">No of Adults:</label>
+      <input type="number" id="no-of-adults" min="1" required>
+      <br>
+      <label for="max-capacity">Max Capacity:</label>
+      <input type="number" id="max-capacity" min="1" required>
+      <br>
+      <label for="cost-per-night">Cost per Night (in Rs):</label>
+      <input type="number" id="cost-per-night" min="1" required>
+      <br>
+      <button class="addBtn" type="submit">Add Room</button>
+    </form>
+    </div>
+        </div>        
+        <div id="popup">
+            <div id="content">
+                <span id="close"> <img src="https://cdn-icons-png.flaticon.com/512/57/57165.png" /> </span>
+                <form id="room-forme">
+      <label for="category">Category:</label>
+      <select id="categorye" required>
+        <option value="">Select Category</option>
+        <option value="Family">Family</option>
+        <option value="Deluxe">Deluxe</option>
+        <option value="Suite">Suite</option>
+      </select>
+      <br>
+      <label>Type of Room:</label>
+      <label for="ac-room">
+        <input type="radio" id="ac-roome" name="room-type" value="AC" required>
+        AC
+      </label>
+      <label for="non-ac-room">
+        <input type="radio" id="non-ac-roome" name="room-type" value="Non-AC" required>
+        Non-AC
+      </label>
+      <br>
+      <label for="bed-type">Bed Type:</label>
+      <select id="bed-typee" required>
+        <option value="">Select Bed Type</option>
+        <option value="Single">Single</option>
+        <option value="Double">Double</option>
+      </select>
+      <br>
+      <label for="no-of-adults">No of Adults:</label>
+      <input type="number" id="no-of-adultse" min="1" required>
+      <br>
+      <label for="max-capacity">Max Capacity:</label>
+      <input type="number" id="max-capacitye" min="1" required>
+      <br>
+      <label for="cost-per-night">Cost per Night (in Rs):</label>
+      <input type="number" id="cost-per-nighte" min="1" required>
+      <br>
+      <button class="addBtn" onclick="editb(event)" type="submit">Add Room</button>
+    </form>
+        </div>
+        </div>
+        <div>
+            <table id="cont">
+                <tr>
+                    <th>ID</th>
+                    <th>Category</th>
+                    <th>Type of Room</th>
+                    <th>Bed type</th>
+                    <th>No of persons</th>
+                    <th>Capacity</th>
+                    <th>Cost</th>
+                    <th>Status</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+    let popup = document.getElementById("popup");
+    let close = document.getElementById("close");
+    close.addEventListener("click", function () {
+        popup.style.display = "none"
+    })
+
+let form = document.getElementById('room-form');
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  let category = document.getElementById('category').value;
+  let imageUrl = document.getElementById('image-url').value;
+  let typeOfRoom = document.querySelector('input[name="room-type"]:checked').value;
+  let bedType = document.getElementById('bed-type').value;
+  let noOfAdults = document.getElementById('no-of-adults').value;
+  let maxCapacity = document.getElementById('max-capacity').value;
+  let costPerNight = +document.getElementById('cost-per-night').value;
+
+  let roomData = {
+    category,
+    image_url: imageUrl,
+    type_of_room: typeOfRoom,
+    bed_type: bedType,
+    no_of_persons: noOfAdults,
+    capacity: maxCapacity,
+    cost: costPerNight,
+    booked: false
+  };
+
+  fetch(`https://sandeepapi-gxyn.onrender.com/hotels`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(roomData)
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+        alert("Hotel Added Successfully")
+        window.location.reload()
+    });
+
+    async function getData() {
+        let res = await fetch(`https://sandeepapi-gxyn.onrender.com/hotels`);
+        let data = await res.json();
+        console.log(data)
+        appnedData(data)
+    }
+    getData()
+
+    function appnedData(data) {
+        let cont = document.getElementById("cont");
+        data.forEach((el) => {
+            let td = document.createElement("tr");
+
+            let id = document.createElement("td");
+            id.innerText = el.id;
+     
+            let Category = document.createElement("td");
+            Category.innerText = el.category;
+
+            let type_of_room= document.createElement("td");
+            type_of_room.innerText = el.type_of_room;
+
+            let bedtype = document.createElement("td");
+            bedtype.innerText = el.bed_type;
+
+            let no_of_persons= document.createElement("td");
+            no_of_persons.innerText = el.no_of_persons;
+
+            let capacity =document.createElement("td");
+            capacity.innerText = el.capacity;
+
+            let cost = document.createElement("td");
+            cost.innerText = ` ${el.cost}`;
+
+            let booked = document.createElement("td");
+            booked.innerText = `${el.booked}`;
+
+            let edition = document.createElement("td");
+            edition.innerText = el.edition;
+
+            let deleteb = document.createElement("button")
+            deleteb.innerText = "Delete"
+
+            deleteb.addEventListener("click", async function () {
+                let res = await fetch(`https://sandeepapi-gxyn.onrender.com/hotels/${el.id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                });
+                let data = await res.json();
+                console.log(data);
+                alert("Hotel Delected Successfully")
+                window.location.reload()
+            })
+            let edit = document.createElement("button")
+            edit.innerText = "edit"
+            edit.addEventListener("click", openpopup);
+            function openpopup(id) {
+                localStorage.setItem("id", JSON.stringify(el.id));
+                popup.style.display = "block";
+            }
+            td.append(id, Category, type_of_room, bedtype,no_of_persons,capacity, cost, booked,  edit, deleteb);
+            cont.append(td)
+        })
+    }
+
+    async function editb(event){
+        event.preventDefault()
+        let id = JSON.parse(localStorage.getItem("id"))
+        let category = document.getElementById('categorye').value;
+        let typeOfRoom = document.querySelector('input[name="room-type"]:checked').value;
+        let bedType = document.getElementById('bed-typee').value;
+        let noOfAdults = document.getElementById('no-of-adultse').value;
+        let maxCapacity = document.getElementById('max-capacitye').value;
+        let costPerNight = +document.getElementById('cost-per-nighte').value;
+
+        let roomData = {
+            category,
+            type_of_room: typeOfRoom,
+            bed_type: bedType,
+            no_of_persons: noOfAdults,
+            capacity: maxCapacity,
+            cost: costPerNight,
+            booked: false
+        };
+        let res = await fetch(`https://sandeepapi-gxyn.onrender.com/hotels/${id}`, {
+            method: "PATCH",
+            body: JSON.stringify(roomData),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        let data = await res.json();
+        console.log(data);
+        alert("Hotel Edited Successfully")
+        window.location.reload();
+    }
+</script>
+</html>

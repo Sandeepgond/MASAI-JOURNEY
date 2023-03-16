@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#nav{
+    display: flex;
+    height: 35px;
+    padding-top: 10px;
+    justify-content: space-around;
+    background-color: aqua;
+    box-shadow: rgba(13, 50, 92, 0.4) 0px 0px 0px 2px, rgba(15, 52, 95, 0.65) 0px 4px 6px -1px, rgba(187, 36, 36, 0.08) 0px 1px 0px inset;
+
+}
+a{
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 20px;
+}
+#cont>tr>img {
+    width: 50px;
+    height: 50px;
+    border: 1px solid red;
+}
+#cont {
+    text-align: center;
+    /* border: 1px solid black; */
+    margin: auto;
+    margin-top: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 20px;
+    border-radius: 10px;
+}
+#cont tr th{
+    /* border: 1px solid red; */
+    color: white;
+    background-color: black;
+    padding: 10px;
+}
+#forma>form {
+    margin: auto;
+    display: grid;
+    width: 40%;
+    /* border: 1px solid red; */
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+#forma>form>input {
+    margin-top: 10px;
+    height: 2rem;
+}
+#forma>form>select {
+    margin-top: 10px;
+    height: 2rem;
+}
+#content {
+    background-color: rgb(244, 181, 181);
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    height: 350px;
+    color: rgb(0, 0, 0);
+
+}
+#popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 20%;
+    top: 0;
+    width: 60%;
+    overflow: auto;
+    text-align: center;
+}
+#close>img {
+    width: 25px;
+}
+#close {
+    margin-left: 90%;
+    cursor: pointer;
+}
+#contw>input {
+    display: grid;
+    width: 50%;
+    margin: auto;
+    height: 2rem;
+    margin-top: 5px;
+}
+#contw>select{
+    height: 2rem;
+    margin-top: 5px;
+}
+.addBtn{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+button{
+    cursor: pointer;
+    padding: 10px;
+}

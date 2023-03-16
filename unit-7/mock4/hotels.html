@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotels page</title>
+    <link rel="stylesheet" href="hotels.css">
+</head>
+
+<body>
+    <div id="nav">
+        <a href="index.html">Home</a>
+        <a href="admin.html">Admin Page</a>
+        <a href="hotels.html">Hotels Page</a>
+    </div>
+    <div class="flex">
+        <select id="filter" required>
+            <option value="All">Select Category</option>
+            <option value="Family">Family</option>
+            <option value="Deluxe">Deluxe</option>
+            <option value="Suite">Suite</option>
+        </select>
+        <select id="sorting">
+            <option value="">Sorting by cost</option>
+            <option value="asc">Low to High</option>
+            <option value="desc">High to Low</option>
+
+        </select>
+    </div>
+    <div id="main">
+    </div>
+</body>
+<script>
+    let main = document.getElementById("main");
+    let data;
+    async function getData() {
+        let res = await fetch("https://sandeepapi-gxyn.onrender.com/hotels");
+        data = await res.json();
+        console.log(data)
+        appnedData(data)
+    }
+    getData()
+
+    function appnedData(data) {
+        let main = document.getElementById("main");
+        main.innerHTML = ""
+        data.forEach((el) => {
+            let td = document.createElement("div");
+
+            let img = document.createElement("img");
+            img.src = el.image_url;
+
+            let Category = document.createElement("p");
+            Category.innerText = `Category : ${el.category}`;
+
+            let type_of_room = document.createElement("p");
+            type_of_room.innerText = `Type of Room : ${el.type_of_room}`
+
+            let bedtype = document.createElement("p");
+            bedtype.innerText = `Bed Type : ${el.bed_type}`;
+
+            let no_of_persons = document.createElement("p");
+            no_of_persons.innerText = `Adults : ${el.no_of_persons}`
+
+            let capacity = document.createElement("p");
+            capacity.innerText = `Capacity : ${el.capacity}`;
+
+            let cost = document.createElement("p");
+            cost.innerText = `Price: ${el.cost}`;
+
+            let booked = document.createElement("p");
+            booked.innerText =`Status : ${el.booked}`;
+
+            let edition = document.createElement("p");
+            edition.innerText = el.edition;
+
+            let book = document.createElement("button");
+
+            book.innerText = "Book Now";
+
+            if (el.booked === true) {
+                book.disabled = true;
+            } else {
+                book.disabled = false
+            }
+
+            book.addEventListener("click", async function () {
+
+                let res = await fetch(`https://sandeepapi-gxyn.onrender.com/hotels/${el.id}`, {
+                    method: "PATCH",
+                    body: JSON.stringify({
+                        booked: true,
+                    }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+
+                })
+                let data = await res.json();
+                console.log(data)
+                alert("Booking Status True")
+                window.location.reload();
+
+            })
+            td.append(img, Category, type_of_room, bedtype, no_of_persons, capacity, cost, book);
+            main.append(td)
+        })
+    }
+
+    document.querySelector("#sorting").addEventListener("change", handleSort)
+    function handleSort(e) {
+        if (e.target.value === "asc") {
+            let sortedData = data.sort((a, b) => {
+                return a.cost - b.cost
+                console.log(a.cost)
+            })
+            appnedData(sortedData)
+        }
+        else {
+            let sortedData = data.sort((a, b) => {
+                return b.cost - a.cost
+            })
+            appnedData(sortedData)
+        }
+
+    }
+
+    let filter = document.getElementById("filter");
+    document.querySelector("#filter").addEventListener("change", handlefilter)
+    function handlefilter(e) {
+        if (filter.value === "All") {
+            appnedData(data);
+            console.log(filter.value)
+        }
+        else {
+            let filtered = data.filter(function (ele) {
+                console.log(ele)
+                return ele.category === filter.value;
+
+            })
+            appnedData(filtered);
+        }
+    }
+</script>
+</html>
